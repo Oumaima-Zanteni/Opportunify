@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+:root {
+  --brand: #bf0808;
+  --brand-deep: #910d0d;
+  --ink: #000000;
+  --gray: #474747;
+}
+
+html, body {
+  background: #ffffff;
+  color: #000000;
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+/* Composants utilitaires */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-brand-600 to-brand-500 text-white hover:from-brand-700 hover:to-brand-600 focus:ring-brand-500 shadow-lg shadow-brand-600/25 hover:shadow-xl hover:shadow-brand-500/35 hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-dark {
+    @apply btn bg-ink text-white hover:bg-ink-soft focus:ring-ink;
+  }
+  .btn-outline {
+    @apply btn border border-neutral-300 bg-white text-ink hover:border-brand-600 hover:text-brand-600 focus:ring-brand-500;
+  }
+  .btn-ghost {
+    @apply btn text-ink-muted hover:bg-neutral-100 hover:text-ink;
+  }
+  .btn-danger {
+    @apply btn bg-rose-50 text-rose-700 hover:bg-rose-600 hover:text-white focus:ring-rose-500;
+  }
+  .input {
+    @apply w-full rounded-lg border border-neutral-300 bg-white px-3.5 py-2.5 text-sm text-ink placeholder-neutral-400 transition focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-100;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+  }
+  .card {
+    @apply rounded-xl border border-neutral-200 bg-white shadow-card transition-all duration-200;
+  }
+  .card-hover {
+    @apply card hover:shadow-cardHover hover:border-brand-200 hover:-translate-y-1;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  }
+  .badge-red {
+    @apply badge bg-brand-50 text-brand-700;
+  }
+  .badge-dark {
+    @apply badge bg-ink text-white;
+  }
+  .badge-neutral {
+    @apply badge bg-neutral-100 text-ink-muted;
+  }
+  .badge-green {
+    @apply badge bg-green-50 text-green-700;
+  }
+  .badge-amber {
+    @apply badge bg-amber-50 text-amber-700;
+  }
+  .section {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .link-brand {
+    @apply text-brand-600 hover:text-brand-700 font-medium transition;
+  }
+}
+
+/* Effets modernes */
+.gradient-text {
+  background: linear-gradient(90deg, #ec9494, #bf0808, #ec9494);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-x 5s ease infinite;
+}
+
+/* ============================================================
+   Impression / export PDF du CV (#cv-preview)
+   ============================================================ */
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* On masque tout sauf la chaîne d'ancêtres de l'aperçu */
+  body * {
+    visibility: hidden !important;
+  }
+
+  #cv-preview,
+  #cv-preview * {
+    visibility: visible !important;
+  }
+
+  #cv-preview {
+    position: absolute !important;
+    inset: 0 auto auto 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    overflow: visible !important;
+    max-height: none !important;
+    background: #ffffff !important;
+  }
+
+  #cv-preview .cv-page {
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Navbar, footer et colonne d'édition : hors impression */
+  .no-print,
+  header,
+  footer {
+    display: none !important;
+  }
+
+  body > div {
+    min-height: 0 !important;
+  }
+
+  #cv-preview .cv-block {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #f5f5f5; }
+::-webkit-scrollbar-thumb { background: #474747; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #bf0808; }

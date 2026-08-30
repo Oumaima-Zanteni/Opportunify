@@ -1,0 +1,25 @@
+# Node
+node_modules/
+.pnp/
+.pnp.js
+
+# Environnement
+.env
+.env.local
+.env.*.local
+.mongo-data/
+
+# Build
+.next/
+dist/
+build/
+out/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db

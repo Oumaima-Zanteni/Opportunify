@@ -1,0 +1,14 @@
+node_modules
+.env
+.env.local
+*.log
+dist
+coverage
+.mongo-data
+
+# Fichiers uploadés (CV) — on garde l'arborescence via les .gitkeep
+uploads/*
+!uploads/.gitkeep
+!uploads/resumes/
+uploads/resumes/*
+!uploads/resumes/.gitkeep
