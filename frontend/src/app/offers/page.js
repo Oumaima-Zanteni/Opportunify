@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { api } from "../../lib/api";
 import OfferCard from "../../components/OfferCard";
 import EmptyState from "../../components/EmptyState";
 import { OFFER_TYPES, CATEGORIES, EXPERIENCE_LEVELS } from "../../lib/constants";
 
-export default function OffersPage() {
+function OffersContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [offers, setOffers] = useState([]);
@@ -176,5 +176,13 @@ export default function OffersPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function OffersPage() {
+  return (
+    <Suspense fallback={<div className="section py-20 text-center text-ink-muted">Chargement…</div>}>
+      <OffersContent />
+    </Suspense>
   );
 }
